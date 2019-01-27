@@ -1,0 +1,29 @@
+version: '3.6'
+
+services: 
+
+  # Backend API
+ smart-detect-app-api-two: 
+   container_name: backend
+   build: ./ 
+   command: npm start
+   working_dir: /usr/src/smart-detect-app-api-two
+   environment: 
+      POSTGRES_URI: postgres://postgres:Sifrabazabaza@postgres:5432/smart-brain1
+   links:
+    - postgres   
+   ports: 
+    - "3000:3000"
+   volumes:
+    - ./:/usr/src/smart-detect-app-api-two
+
+# Postgres    
+ postgres:
+  environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Sifrabazabaza
+      POSTGRES_DB: smart-brain1
+      POSTGRES_HOST: postgres
+  build: ./postgres
+  ports:
+   - "5432"
