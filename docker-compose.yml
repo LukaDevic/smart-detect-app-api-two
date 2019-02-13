@@ -10,8 +10,10 @@ services:
    working_dir: /usr/src/smart-detect-app-api-two
    environment: 
       POSTGRES_URI: postgres://postgres:Sifrabazabaza@postgres:5432/smart-brain1
+      REDIS_URI: redis://redis:6379
    links:
     - postgres   
+    - redis
    ports: 
     - "3000:3000"
    volumes:
@@ -27,3 +29,10 @@ services:
   build: ./postgres
   ports:
    - "5432"
+
+
+# Redis
+ redis: 
+   image: redis
+   ports:
+     - "6379"
